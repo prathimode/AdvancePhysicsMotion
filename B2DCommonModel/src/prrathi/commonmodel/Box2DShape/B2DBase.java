@@ -20,6 +20,7 @@ public abstract class B2DBase  {
     @Getter
     protected Box2DProcessing box2DP;
     protected PApplet scene;
+    public IWorldModelSource source;
     @Setter @Getter
     public Style style;
     @Setter @Getter
@@ -36,6 +37,7 @@ public abstract class B2DBase  {
             throw new AssertionError("PApplet is not set");
         else
             scene = var1.getPApplet();
+        source =  var1;
     }
 
     public void render() {
