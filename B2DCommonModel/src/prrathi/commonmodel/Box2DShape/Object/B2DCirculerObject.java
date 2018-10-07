@@ -27,7 +27,7 @@ public  class B2DCirculerObject extends B2DObjectBase {
     public B2DCirculerObject(Vec2 pos, float r , IWorldModelSource var1) {
         super(var1);
         this.r = r;
-        B2DShapeConfig b2DShapeConfig = new B2DShapeConfig(BodyType.DYNAMIC, 0.5f, 1, 0.3f);
+        B2DShapeConfig b2DShapeConfig = new B2DShapeConfig(BodyType.DYNAMIC, 0.3f, 1, 0.1f);
         this.body = createBody(pos, b2DShapeConfig);
     }
 

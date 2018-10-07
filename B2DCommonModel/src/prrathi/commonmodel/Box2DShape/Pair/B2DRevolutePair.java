@@ -24,18 +24,14 @@ public class B2DRevolutePair extends B2DPairBase {
         ((RevoluteJoint)joint).setMaxMotorTorque(maxTorque);
     }
 
-    public void renderMain() {
+    protected void renderMain() {
         body1.render();
         body2.render();
-        Vec2 b1 = box2DP.getBodyPixelCoord(body1.body);
-        Vec2 b2 = box2DP.getBodyPixelCoord(body2.body);
-        scene.line(b1.x,b1.y,b2.x,b2.y);
     }
 
     protected Joint createJoint() {
         RevoluteJointDef jointDef = new RevoluteJointDef();
-        jointDef.bodyA = body1.body;
-        jointDef.bodyB = body2.body;
+        jointDef.initialize(body1.body,body2.body,body1.body.getWorldCenter());
 
         jointDef.motorSpeed = scene.PI*2;
         jointDef.enableMotor = true;

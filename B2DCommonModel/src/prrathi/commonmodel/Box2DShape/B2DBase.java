@@ -24,7 +24,7 @@ public abstract class B2DBase  {
     @Setter @Getter
     public Style style;
     @Setter @Getter
-    boolean enableStyle = true;
+    boolean enableStyle = false;
 
     public B2DBase(IWorldModelSource var1) {
         super();
@@ -50,7 +50,7 @@ public abstract class B2DBase  {
         scene.popMatrix();
 
         if(enableStyle) {
-            scene.pushStyle();
+            scene.popStyle();
         }
     }
     private void applyStyle() {
