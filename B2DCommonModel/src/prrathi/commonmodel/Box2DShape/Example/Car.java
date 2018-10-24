@@ -1,14 +1,11 @@
 package prrathi.commonmodel.Box2DShape.Example;
 
 import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.Body;
 import prrathi.commonmodel.Box2DShape.B2DBase;
-import prrathi.commonmodel.Box2DShape.B2DObjectBase;
-import prrathi.commonmodel.Box2DShape.B2DPairBase;
 import prrathi.commonmodel.Box2DShape.Object.B2DBoxObject;
 import prrathi.commonmodel.Box2DShape.Object.B2DParticle;
 import prrathi.commonmodel.Box2DShape.Pair.B2DRevolutePair;
-import prrathi.commonmodel.IWorldModelSource;
+import prrathi.commonmodel.Box2DShape.IWorldModelSource;
 
 public class Car extends B2DBase {
     B2DBoxObject carBody;
@@ -32,11 +29,14 @@ public class Car extends B2DBase {
 
         t1Pair = new B2DRevolutePair(tyre1, carBody, source);
         t2Pair = new B2DRevolutePair(tyre2, carBody, source);
+        t1Pair.shouldRender = false;
+        t2Pair.shouldRender = false;
     }
 
     @Override
     protected void renderMain() {
-       t1Pair.render();
-       t2Pair.render();
+       carBody.render();
+       tyre1.render();
+       tyre2.render();
     }
 }

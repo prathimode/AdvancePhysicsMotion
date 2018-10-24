@@ -5,7 +5,7 @@ import org.jbox2d.collision.shapes.ChainShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.BodyDef;
 import prrathi.commonmodel.Box2DShape.B2DObjectBase;
-import prrathi.commonmodel.IWorldModelSource;
+import prrathi.commonmodel.Box2DShape.IWorldModelSource;
 
 public class B2DSurface extends B2DObjectBase{
 

@@ -7,7 +7,7 @@ import prrathi.commonmodel.BasicGraphicWindow;
 import prrathi.commonmodel.Box2DShape.B2DObjectBase;
 import prrathi.commonmodel.Box2DShape.Example.Car;
 import prrathi.commonmodel.Box2DShape.Object.B2DSurface;
-import prrathi.commonmodel.IWorldModelSource;
+import prrathi.commonmodel.Box2DShape.IWorldModelSource;
 import shiffman.box2d.Box2DProcessing;
 
 public class CarOnSurface extends BasicGraphicWindow implements IWorldModelSource {

@@ -9,7 +9,7 @@ import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import prrathi.commonmodel.Box2DShape.B2DObjectBase;
-import prrathi.commonmodel.IWorldModelSource;
+import prrathi.commonmodel.Box2DShape.IWorldModelSource;
 
 @Getter
 @Setter
@@ -22,6 +22,7 @@ public class B2DBoxObject extends B2DObjectBase {
         this.h = h;
 
         this.body = createBody(pos, config);
+        body.setUserData(this);
     }
 
     public B2DBoxObject(Vec2 pos, float w, float h , IWorldModelSource var1) {
@@ -30,8 +31,8 @@ public class B2DBoxObject extends B2DObjectBase {
         this.h = h;
         B2DShapeConfig b2DShapeConfig = new B2DShapeConfig(BodyType.DYNAMIC, 0.5f, 1, 0.3f);
         this.body = createBody(pos, b2DShapeConfig);
+        body.setUserData(this);
     }
-
 
 
     @Override

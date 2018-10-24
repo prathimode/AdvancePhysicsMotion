@@ -2,16 +2,12 @@ package com.prrathi;
 
 import java.util.ArrayList;
 import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.BodyType;
 import processing.core.PApplet;
 import prrathi.commonmodel.BasicGraphicWindow;
 import prrathi.commonmodel.Box2DShape.B2DObjectBase;
 import prrathi.commonmodel.Box2DShape.Example.WindMill;
-import prrathi.commonmodel.Box2DShape.Object.B2DBoxObject;
 import prrathi.commonmodel.Box2DShape.Object.B2DParticle;
-import prrathi.commonmodel.Box2DShape.Object.B2DShapeConfig;
-import prrathi.commonmodel.Box2DShape.Pair.B2DDistancePair;
-import prrathi.commonmodel.IWorldModelSource;
+import prrathi.commonmodel.Box2DShape.IWorldModelSource;
 import shiffman.box2d.Box2DProcessing;
 
 public class WindMillExample extends BasicGraphicWindow implements IWorldModelSource {

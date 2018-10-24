@@ -8,7 +8,7 @@ import prrathi.commonmodel.Box2DShape.B2DObjectBase;
 import prrathi.commonmodel.Box2DShape.Object.B2DBoxObject;
 import prrathi.commonmodel.Box2DShape.Pair.B2DDistancePair;
 import prrathi.commonmodel.Box2DShape.Object.B2DParticle;
-import prrathi.commonmodel.IWorldModelSource;
+import prrathi.commonmodel.Box2DShape.IWorldModelSource;
 import shiffman.box2d.*;
 import org.jbox2d.common.*;
 import prrathi.commonmodel.BasicGraphicWindow;

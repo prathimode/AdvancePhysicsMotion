@@ -1,12 +1,11 @@
 package prrathi.commonmodel.Box2DShape.Pair;
 
-import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.joints.Joint;
 import org.jbox2d.dynamics.joints.RevoluteJoint;
 import org.jbox2d.dynamics.joints.RevoluteJointDef;
 import prrathi.commonmodel.Box2DShape.B2DObjectBase;
 import prrathi.commonmodel.Box2DShape.B2DPairBase;
-import prrathi.commonmodel.IWorldModelSource;
+import prrathi.commonmodel.Box2DShape.IWorldModelSource;
 
 public class B2DRevolutePair extends B2DPairBase {
 
@@ -25,8 +24,10 @@ public class B2DRevolutePair extends B2DPairBase {
     }
 
     protected void renderMain() {
-        body1.render();
-        body2.render();
+        if(shouldRender) {
+            body1.render();
+            body2.render();
+        }
     }
 
     protected Joint createJoint() {

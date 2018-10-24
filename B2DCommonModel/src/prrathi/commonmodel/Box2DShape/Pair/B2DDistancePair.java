@@ -6,7 +6,7 @@ import org.jbox2d.dynamics.joints.DistanceJointDef;
 import org.jbox2d.dynamics.joints.Joint;
 import prrathi.commonmodel.Box2DShape.B2DObjectBase;
 import prrathi.commonmodel.Box2DShape.B2DPairBase;
-import prrathi.commonmodel.IWorldModelSource;
+import prrathi.commonmodel.Box2DShape.IWorldModelSource;
 
 public class B2DDistancePair extends B2DPairBase {
 
@@ -18,11 +18,13 @@ public class B2DDistancePair extends B2DPairBase {
     }
 
     public void renderMain() {
-        body1.render();
-        body2.render();
-        Vec2 b1 = box2DP.getBodyPixelCoord(body1.body);
-        Vec2 b2 = box2DP.getBodyPixelCoord(body2.body);
-        scene.line(b1.x,b1.y,b2.x,b2.y);
+        if(shouldRender) {
+            body1.render();
+            body2.render();
+            Vec2 b1 = box2DP.getBodyPixelCoord(body1.body);
+            Vec2 b2 = box2DP.getBodyPixelCoord(body2.body);
+            scene.line(b1.x, b1.y, b2.x, b2.y);
+        }
     }
 
 

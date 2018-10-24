@@ -16,4 +16,5 @@ public class Style {
         this.strokeColorFloat = strokeColor;
         this.strokeWidth = strokeWidth;
     }
+
 }

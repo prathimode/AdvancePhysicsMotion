@@ -8,7 +8,7 @@ import prrathi.commonmodel.Box2DShape.B2DObjectBase;
 import prrathi.commonmodel.Box2DShape.B2DPairBase;
 import prrathi.commonmodel.Box2DShape.Object.B2DBoxObject;
 import prrathi.commonmodel.Box2DShape.Pair.B2DRevolutePair;
-import prrathi.commonmodel.IWorldModelSource;
+import prrathi.commonmodel.Box2DShape.IWorldModelSource;
 
 public class WindMill extends B2DBase {
     B2DObjectBase body1;

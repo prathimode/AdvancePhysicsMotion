@@ -2,8 +2,7 @@ package prrathi.commonmodel.Box2DShape;
 
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
-import prrathi.commonmodel.Box2DShape.B2DBase;
-import prrathi.commonmodel.IWorldModelSource;
+import org.jbox2d.dynamics.Fixture;
 
 public abstract class B2DObjectBase extends B2DBase {
 
@@ -16,6 +15,8 @@ public abstract class B2DObjectBase extends B2DBase {
     // This function removes the particle from the box2d world
     public void killBody() {
         box2DP.destroyBody(body);
+        body = null;
+
     }
 
     public boolean isBodyOutOfWindow() {
@@ -28,5 +29,16 @@ public abstract class B2DObjectBase extends B2DBase {
         return false;
     }
 
+    public  boolean contains(float x, float y){
+        Vec2 worldPoint = box2DP.coordPixelsToWorld(x, y);
+        Fixture f = body.getFixtureList();
+        boolean inside = false;
+        while(f != null) {
+            inside |= f.testPoint(worldPoint);
+            if(inside) break;
+            f = f.getNext();
+        }
+        return inside;
+    }
     public abstract boolean isDone();
 }

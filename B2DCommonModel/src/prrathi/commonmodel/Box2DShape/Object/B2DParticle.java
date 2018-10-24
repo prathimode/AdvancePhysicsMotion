@@ -7,7 +7,7 @@ import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import prrathi.commonmodel.Box2DShape.B2DObjectBase;
-import prrathi.commonmodel.IWorldModelSource;
+import prrathi.commonmodel.Box2DShape.IWorldModelSource;
 
 public class B2DParticle extends B2DObjectBase {
 
@@ -17,7 +17,39 @@ public class B2DParticle extends B2DObjectBase {
     public B2DParticle(Vec2 pos, float r_, boolean fixed, IWorldModelSource model) {
         super(model);
         r = r_;
+        makeBody(pos,fixed);
+        body.setUserData(this);
+    }
 
+
+
+    // Is the particle ready for deletion?
+    public boolean isDone() {
+        // Let's find the screen position of the particle
+        Vec2 pos = box2DP.getBodyPixelCoord(body);
+        // Is it off the bottom of the screen?
+        if (pos.y > scene.height+r*2) {
+            killBody();
+            return true;
+        }
+        return false;
+    }
+
+    //
+    public void renderMain() {
+        // We look at each body and get its screen position
+        Vec2 pos = box2DP.getBodyPixelCoord(body);
+        // Get its angle of rotation
+        float a = body.getAngle();
+        scene.translate(pos.x,pos.y);
+        scene.rotate(-1*a);
+        scene.ellipse(0,0,r*2,r*2);
+        // Let's add a line so we can see the rotation
+        scene.line(0,0,r,0);
+
+    }
+
+    private void makeBody(Vec2 pos, boolean fixed){
         // Define a body
         BodyDef bd = new BodyDef();
         if (fixed) bd.type = BodyType.STATIC;
@@ -40,37 +72,6 @@ public class B2DParticle extends B2DObjectBase {
         fd.restitution = 0.1f;
 
         body.createFixture(fd);
-    }
-
-
-
-    // Is the particle ready for deletion?
-    public boolean isDone() {
-        // Let's find the screen position of the particle
-        Vec2 pos = box2DP.getBodyPixelCoord(body);
-        // Is it off the bottom of the screen?
-        if (pos.y > scene.height+r*2) {
-            killBody();
-            return true;
-        }
-        return false;
-    }
-
-    //
-    public void renderMain() {
-        if(isEnableStyle()) {
-            System.out.println("enable");
-        }
-        // We look at each body and get its screen position
-        Vec2 pos = box2DP.getBodyPixelCoord(body);
-        // Get its angle of rotation
-        float a = body.getAngle();
-        scene.translate(pos.x,pos.y);
-        scene.rotate(-1*a);
-        scene.ellipse(0,0,r*2,r*2);
-        // Let's add a line so we can see the rotation
-        scene.line(0,0,r,0);
-
     }
 
 
