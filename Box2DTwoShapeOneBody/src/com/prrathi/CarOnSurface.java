@@ -6,11 +6,11 @@ import processing.core.PApplet;
 import prrathi.commonmodel.BasicGraphicWindow;
 import prrathi.commonmodel.Box2DShape.B2DObjectBase;
 import prrathi.commonmodel.Box2DShape.Example.Car;
+import prrathi.commonmodel.Box2DShape.IB2DWorldModelSource;
 import prrathi.commonmodel.Box2DShape.Object.B2DSurface;
-import prrathi.commonmodel.Box2DShape.IWorldModelSource;
 import shiffman.box2d.Box2DProcessing;
 
-public class CarOnSurface extends BasicGraphicWindow implements IWorldModelSource {
+public class CarOnSurface extends BasicGraphicWindow implements IB2DWorldModelSource {
 
     Box2DProcessing box2d;
     ArrayList<B2DObjectBase> list;
