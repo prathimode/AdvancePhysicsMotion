@@ -1,25 +1,17 @@
 package com.prrathi;
 
-import java.util.ArrayList;
 import processing.core.PApplet;
 import prrathi.commonmodel.BasicGraphicWindow;
-import prrathi.commonmodel.IPRCWorldModelSource;
-import prrathi.commonmodel.PRCBase;
-import prrathi.commonmodel.ToxicLibShape.Object.TXLParticle;
-import prrathi.commonmodel.ToxicLibShape.Object.TXLSpring;
+import prrathi.commonmodel.ToxicLibShape.ITXLWorldModelSource;
+import prrathi.commonmodel.ToxicLibShape.Object.TXLCluster;
 import toxi.geom.Rect;
 import toxi.geom.Vec2D;
 import toxi.physics2d.VerletPhysics2D;
-import toxi.physics2d.behaviors.GravityBehavior2D;
 
-public class ConnectedSystem extends BasicGraphicWindow  implements IPRCWorldModelSource {
+public class ConnectedSystem extends BasicGraphicWindow  implements ITXLWorldModelSource {
 
     VerletPhysics2D physics2D;
-    ArrayList<TXLParticle> particleArrayList = new ArrayList<>();
-    ArrayList<TXLSpring> springArrayList = new ArrayList<>();
-    int count = 5;
-
-
+    TXLCluster cluster;
 
     public void settings()
     {
@@ -28,44 +20,30 @@ public class ConnectedSystem extends BasicGraphicWindow  implements IPRCWorldMod
      //  physics2D.addBehavior(new GravityBehavior2D(new Vec2D(0,0.2f)));
         physics2D.setWorldBounds(new Rect(0,0,width, height));
         physics2D.setDrag(1f);
-        setPoints(count);
-
-
-        //particleArrayList.get(0).body.lock();
+        setPoints(10);
     }
 
-    private void setPoints(int totalParticle) {
-        for(int i =0 ;i< totalParticle ;i++) {
-            particleArrayList.add(new TXLParticle(this, new Vec2D(random(100,400) ,  random(100,400)), 10));
-            physics2D.addParticle(particleArrayList.get(i).body);
-        }
-        float v = 300;
-        for(int j = 0 ;j < totalParticle - 1 ; j++ ) {
-            for (int i = j +1 ; i < totalParticle  ; i++) {
-                TXLSpring s = new TXLSpring(this, particleArrayList.get(i), particleArrayList.get(j), v, 0.01f);
-                physics2D.addSpring(s.springBody);
-                springArrayList.add(s);
-            }
-        }
+    public void setPoints(int a) {
+        cluster = new TXLCluster(this, Vec2D.randomVector(), a,200);
     }
+
 
     public void draw() {
         background(255);
         physics2D.update();
-      //  particleArrayList.forEach(PRCBase::render);
-        springArrayList.forEach(PRCBase::render);
-     //   println("yes");
+        cluster.render();
 
     }
 
     @Override
     public void mouseClicked() {
         super.mouseClicked();
-        particleArrayList.forEach((a)->physics2D.removeParticle(a.body));
-        springArrayList.forEach((a)->physics2D.removeSpring(a.springBody));
-        particleArrayList.clear();
-        springArrayList.clear();
         setPoints((int)random(2, 30));
+        if(frameCount%2 == 0) {
+            cluster.toggleShowConnection();
+        } else  {
+            cluster.toggleShowParticle();
+        }
     }
 
     @Override
@@ -77,5 +55,10 @@ public class ConnectedSystem extends BasicGraphicWindow  implements IPRCWorldMod
         String[] args = {"simplePendlum"};
         ConnectedSystem gw = new ConnectedSystem();
         PApplet.runSketch(args,gw);
+    }
+
+    @Override
+    public VerletPhysics2D getVerletWorld2D() {
+        return physics2D;
     }
 }

@@ -3,8 +3,7 @@ package com.prrathi;
 import java.util.ArrayList;
 import processing.core.PApplet;
 import prrathi.commonmodel.BasicGraphicWindow;
-import prrathi.commonmodel.IPRCWorldModelSource;
-import prrathi.commonmodel.PRCBase;
+import prrathi.commonmodel.ToxicLibShape.ITXLWorldModelSource;
 import prrathi.commonmodel.ToxicLibShape.Object.TXLParticle;
 import prrathi.commonmodel.ToxicLibShape.Object.TXLSpring;
 import toxi.geom.Rect;
@@ -12,7 +11,7 @@ import toxi.geom.Vec2D;
 import toxi.physics2d.VerletPhysics2D;
 import toxi.physics2d.behaviors.GravityBehavior2D;
 
-public class MultiplePointPendulam extends BasicGraphicWindow implements IPRCWorldModelSource {
+public class MultiplePointPendulam extends BasicGraphicWindow implements ITXLWorldModelSource {
 
     VerletPhysics2D physics2D;
     ArrayList<TXLParticle> particleArrayList = new ArrayList<>();
@@ -37,13 +36,6 @@ public class MultiplePointPendulam extends BasicGraphicWindow implements IPRCWor
         }
         particleArrayList.get(0).body.lock();
         particleArrayList.get((int)number-1).setRadius(40);
-
-        for(int i =0 ;i<number;i++) {
-            physics2D.addParticle(particleArrayList.get(i).body);
-        }
-        for(int i =0 ;i<number-1;i++) {
-            physics2D.addSpring(springArrayList.get(i).springBody);
-        }
     }
 
     public void draw() {
@@ -76,5 +68,10 @@ public class MultiplePointPendulam extends BasicGraphicWindow implements IPRCWor
         String[] args = {"simplePendlum"};
         MultiplePointPendulam gw = new MultiplePointPendulam();
         PApplet.runSketch(args,gw);
+    }
+
+    @Override
+    public VerletPhysics2D getVerletWorld2D() {
+        return physics2D;
     }
 }
