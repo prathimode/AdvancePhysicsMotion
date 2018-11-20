@@ -1,18 +1,22 @@
 package prrathi.commonmodel;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import processing.core.PApplet;
-import prrathi.commonmodel.Style.Style;
+import prrathi.commonmodel.Style.P3Style;
+
 
 public abstract class PRCBase {
 
+    @Getter(AccessLevel.PROTECTED)
     protected PApplet scene;
     @Setter
     @Getter
-    public Style style;
+    public P3Style style;
     @Setter @Getter
-    boolean enableStyle = false;
+    private boolean enableStyle = false;
+
 
     public PRCBase(IPRCWorldModelSource scene) {
         if (scene.getPApplet() == null)
