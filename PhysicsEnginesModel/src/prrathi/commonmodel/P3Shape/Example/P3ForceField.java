@@ -29,9 +29,9 @@ public class P3ForceField extends PRCBase {
         for(int i= 0 ; i<row; i++) {
             float yy = 0.0f;
             for (int j = 0; j < col; j++) {
-                float theta = scene.map(scene.noise(xx,yy),0,1,0,scene.TWO_PI);
+                float theta = PApplet.map(scene.noise(xx,yy),0,1,0,scene.TWO_PI);
                 // Polar to cartesian coordinate transformation to get x and y components of the vector
-                data[i][j] = new PVector(scene.cos(theta),scene.sin(theta));
+                data[i][j] = new PVector(PApplet.cos(theta), PApplet.sin(theta));
 //                data[i][j] = PVector.fromAngle(scene.noise(xx,yy));
                 yy +=0.1f;
             }
